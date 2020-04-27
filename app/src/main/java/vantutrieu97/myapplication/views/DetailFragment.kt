@@ -14,7 +14,7 @@ import vantutrieu97.myapplication.R
  * A simple [Fragment] subclass.
  */
 class DetailFragment : Fragment() {
-
+    private var dogUid = 0
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -25,6 +25,11 @@ class DetailFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        arguments?.let {
+            dogUid = DetailFragmentArgs.fromBundle(it).dogUid
+            textView.text = dogUid.toString()
+        }
         listBtn.setOnClickListener {
             if (it.findNavController().currentDestination?.id == R.id.detailFragment) {
                 var action = DetailFragmentDirections.actionListFragment()
