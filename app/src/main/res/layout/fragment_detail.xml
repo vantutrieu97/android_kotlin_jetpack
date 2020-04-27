@@ -26,8 +26,10 @@
         android:clickable="true"
         android:focusable="true"
         android:src="@drawable/ic_list"
+        app:backgroundTint="#6200EE"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:rippleColor="6200EE" />
 </androidx.constraintlayout.widget.ConstraintLayout>
