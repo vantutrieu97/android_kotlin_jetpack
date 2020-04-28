@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import vantutrieu97.myapplication.models.AnimalBreed
 
-class ListViewModel : ViewModel() {
+class AnimalsListViewModel : ViewModel() {
     val animals = MutableLiveData<ArrayList<AnimalBreed>>()
     val animalLoadError = MutableLiveData<Boolean>()
     val loading = MutableLiveData<Boolean>()
