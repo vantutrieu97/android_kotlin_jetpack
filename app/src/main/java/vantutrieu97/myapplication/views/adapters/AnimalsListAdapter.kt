@@ -1,6 +1,5 @@
 package vantutrieu97.myapplication.views.adapters
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,10 +8,11 @@ import kotlinx.android.synthetic.main.thumnail_animal_item.view.*
 import vantutrieu97.myapplication.R
 import vantutrieu97.myapplication.models.AnimalBreed
 
-class AnimalsListAdapter(val context: Context, val animals: ArrayList<AnimalBreed>) :
+class AnimalsListAdapter(val animals: ArrayList<AnimalBreed>) :
     RecyclerView.Adapter<AnimalsListAdapter.Holder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AnimalsListAdapter.Holder {
-        val view = LayoutInflater.from(context).inflate(R.layout.thumnail_animal_item, parent)
+        val view =
+            LayoutInflater.from(parent.context).inflate(R.layout.thumnail_animal_item, parent)
         return Holder(view)
     }
 
