@@ -40,6 +40,14 @@ class ListFragment : Fragment() {
             layoutManager = LinearLayoutManager(context)
             adapter = animalsListAdapter
         }
+
+        refreshLayout.setOnRefreshListener {
+            animalsRcV.visibility = View.GONE
+            errorsTxt.visibility = View.GONE
+            loadingView.visibility = View.INVISIBLE
+            viewModel.refresh()
+            refreshLayout.isRefreshing = false
+        }
         observeViewModel()
     }
 
