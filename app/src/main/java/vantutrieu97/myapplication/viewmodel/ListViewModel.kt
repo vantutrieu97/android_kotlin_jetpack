@@ -1,5 +1,6 @@
 package vantutrieu97.myapplication.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import vantutrieu97.myapplication.models.AnimalBreed
@@ -8,8 +9,10 @@ class ListViewModel : ViewModel() {
     val animals = MutableLiveData<ArrayList<AnimalBreed>>()
     val animalLoadError = MutableLiveData<Boolean>()
     val loading = MutableLiveData<Boolean>()
+    val TAG = "ViewModel_Flow"
 
     fun refresh() {
+        Log.i(TAG, "refresh() start")
         val animal0 =
             AnimalBreed("00", "Bread00", "10 years", "Group 00", "For 00", "Temperanment 00", "")
         val animal1 =
@@ -36,6 +39,6 @@ class ListViewModel : ViewModel() {
         animals.value = animalsListTemporal
         animalLoadError.value = false
         loading.value = false
-
+        Log.i(TAG, "refresh() done")
     }
 }
