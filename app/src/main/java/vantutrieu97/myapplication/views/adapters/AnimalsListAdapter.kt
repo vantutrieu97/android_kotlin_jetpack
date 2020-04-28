@@ -7,10 +7,10 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.thumnail_animal_item.view.*
 import vantutrieu97.myapplication.R
-import vantutrieu97.myapplication.models.AnimalBreed
+import vantutrieu97.myapplication.models.Animal
 import vantutrieu97.myapplication.views.ListFragmentDirections
 
-class AnimalsListAdapter(val animals: ArrayList<AnimalBreed>) :
+class AnimalsListAdapter(val animals: ArrayList<Animal>) :
     RecyclerView.Adapter<AnimalsListAdapter.Holder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AnimalsListAdapter.Holder {
         val view =
@@ -19,7 +19,7 @@ class AnimalsListAdapter(val animals: ArrayList<AnimalBreed>) :
         return Holder(view)
     }
 
-    fun updateAnimalsList(newAnimals: ArrayList<AnimalBreed>) {
+    fun updateAnimalsList(newAnimals: ArrayList<Animal>) {
         animals.clear()
         animals.addAll(newAnimals)
         notifyDataSetChanged()
