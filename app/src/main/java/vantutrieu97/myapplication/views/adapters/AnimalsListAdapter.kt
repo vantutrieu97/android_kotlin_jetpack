@@ -3,10 +3,12 @@ package vantutrieu97.myapplication.views.adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.thumnail_animal_item.view.*
 import vantutrieu97.myapplication.R
 import vantutrieu97.myapplication.models.AnimalBreed
+import vantutrieu97.myapplication.views.ListFragmentDirections
 
 class AnimalsListAdapter(val animals: ArrayList<AnimalBreed>) :
     RecyclerView.Adapter<AnimalsListAdapter.Holder>() {
@@ -28,9 +30,13 @@ class AnimalsListAdapter(val animals: ArrayList<AnimalBreed>) :
     }
 
     override fun onBindViewHolder(holder: AnimalsListAdapter.Holder, position: Int) {
-        holder.itemView.titleTxt.text = animals[position].dogBreed
-        holder.itemView.textTxt.text = animals[position].lifeSpan
-
+        val animal = animals[position]
+        holder.itemView.titleTxt.text = animal.breed
+        holder.itemView.textTxt.text = animal.lifeSpan
+        holder.itemView.setOnClickListener {
+            Navigation.findNavController(it)
+                .navigate(ListFragmentDirections.actionDetailFragment(20))
+        }
     }
 
     inner class Holder(itemView: View) : RecyclerView.ViewHolder(itemView)
