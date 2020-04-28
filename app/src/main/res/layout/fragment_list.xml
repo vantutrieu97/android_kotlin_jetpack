@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -11,7 +10,7 @@
         android:layout_height="match_parent">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/animalsList"
+            android:id="@+id/animalsRcV"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -19,21 +18,23 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/errorsList"
+            android:id="@+id/errorsTxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/textview"
+            android:visibility="invisible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/animalsList"
-            app:layout_constraintTop_toTopOf="@+id/animalsList" />
+            app:layout_constraintStart_toStartOf="@+id/animalsRcV"
+            app:layout_constraintTop_toTopOf="@+id/animalsRcV" />
 
         <ProgressBar
             android:id="@+id/loadingView"
             style="?android:attr/progressBarStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="@+id/animalsList"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@+id/animalsRcV"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
