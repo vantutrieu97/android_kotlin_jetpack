@@ -12,7 +12,7 @@ class AnimalsListAdapter(val animals: ArrayList<AnimalBreed>) :
     RecyclerView.Adapter<AnimalsListAdapter.Holder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AnimalsListAdapter.Holder {
         val view =
-            LayoutInflater.from(parent.context).inflate(R.layout.thumnail_animal_item, parent)
+            LayoutInflater.from(parent.context).inflate(R.layout.thumnail_animal_item, parent,false)
         return Holder(view)
     }
 
