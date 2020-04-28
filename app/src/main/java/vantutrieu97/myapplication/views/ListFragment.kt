@@ -11,7 +11,7 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_list.*
 import vantutrieu97.myapplication.R
-import vantutrieu97.myapplication.viewmodel.ListViewModel
+import vantutrieu97.myapplication.viewmodel.AnimalsListViewModel
 import vantutrieu97.myapplication.views.adapters.AnimalsListAdapter
 
 /**
@@ -19,7 +19,7 @@ import vantutrieu97.myapplication.views.adapters.AnimalsListAdapter
  */
 class ListFragment : Fragment() {
     private val TAG = "ViewModel_Flow"
-    private lateinit var viewModel: ListViewModel
+    private lateinit var viewModel: AnimalsListViewModel
     private lateinit var animalsListAdapter: AnimalsListAdapter
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,7 +33,7 @@ class ListFragment : Fragment() {
         Log.i(TAG, "onViewCreated")
         super.onViewCreated(view, savedInstanceState)
         animalsListAdapter = AnimalsListAdapter(arrayListOf())
-        viewModel = ViewModelProviders.of(this).get(ListViewModel::class.java)
+        viewModel = ViewModelProviders.of(this).get(AnimalsListViewModel::class.java)
         viewModel.refresh()
 
         animalsRcV.apply {
