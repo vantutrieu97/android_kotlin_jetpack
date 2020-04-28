@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.thumnail_animal_item.view.*
 import vantutrieu97.myapplication.R
 import vantutrieu97.myapplication.models.Animal
@@ -33,6 +34,11 @@ class AnimalsListAdapter(val animals: ArrayList<Animal>) :
         val animal = animals[position]
         holder.itemView.titleTxt.text = animal.breed
         holder.itemView.textTxt.text = animal.lifeSpan
+        Picasso.get().load("${animal.imageUrl}")
+            .into(holder.itemView.imageView)
+
+
+
         holder.itemView.setOnClickListener {
             Navigation.findNavController(it)
                 .navigate(ListFragmentDirections.actionDetailFragment(20))
