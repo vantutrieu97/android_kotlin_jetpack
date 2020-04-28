@@ -10,7 +10,7 @@
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        android:contentDescription="@string/todo"
+        android:contentDescription="@string/to_do"
         android:padding="4dp"
         android:scaleType="fitCenter"
         app:srcCompat="@mipmap/ic_launcher" />
@@ -27,13 +27,13 @@
             style="@style/Title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/textview" />
+            android:text="@string/text_view" />
 
         <TextView
             android:id="@+id/textTxt"
             style="@style/Text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/textview" />
+            android:text="@string/text_view" />
     </LinearLayout>
 </LinearLayout>
