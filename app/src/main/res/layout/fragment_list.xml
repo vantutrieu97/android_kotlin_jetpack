@@ -21,7 +21,7 @@
             android:id="@+id/errorsTxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/textview"
+            android:text="@string/text_view"
             android:visibility="invisible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
