@@ -1,6 +1,6 @@
 package vantutrieu97.myapplication.models
 
-data class Animal(
+data class AnimalBreed(
     val breedId: String?,
     val breed: String?,
     val lifeSpan: String?,

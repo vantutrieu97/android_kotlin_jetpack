@@ -2,13 +2,13 @@ package vantutrieu97.myapplication.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import vantutrieu97.myapplication.models.Animal
+import vantutrieu97.myapplication.models.AnimalBreed
 
 class AnimalDetailViewModel : ViewModel() {
-    val animal = MutableLiveData<Animal>()
+    val animal = MutableLiveData<AnimalBreed>()
 
     fun fetch() {
-        val animalTemporal = Animal(
+        val animalTemporal = AnimalBreed(
             "0-temporal",
             "Breed-temporal",
             "10 years-temporal",
