@@ -29,6 +29,10 @@
             style="@style/Title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:fontFamily="casual"
+            android:maxLines="1"
+            android:scrollHorizontally="true"
             android:text="@string/text_view" />
 
         <TextView
@@ -36,6 +40,40 @@
             style="@style/Text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:fontFamily="casual"
+            android:maxLines="1"
+            android:scrollHorizontally="true"
+            android:text="@string/text_view" />
+
+        <TextView
+            android:id="@+id/groupTxt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:fontFamily="casual"
+            android:maxLines="1"
+            android:scrollHorizontally="true"
+            android:text="@string/text_view" />
+
+        <TextView
+            android:id="@+id/originTxt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:fontFamily="casual"
+            android:maxLines="1"
+            android:scrollHorizontally="true"
+            android:text="@string/text_view" />
+
+        <TextView
+            android:id="@+id/temperamenTxt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:fontFamily="casual"
+            android:maxLines="1"
+            android:scrollHorizontally="true"
             android:text="@string/text_view" />
     </LinearLayout>
 </LinearLayout>
