@@ -15,6 +15,7 @@ class AnimalDetailViewModel : ViewModel() {
             "Group 0-temporal",
             "For 0-temporal",
             "Temperanment 0-temporal",
+            "",
             ""
         )
         animal.value = animalTemporal
