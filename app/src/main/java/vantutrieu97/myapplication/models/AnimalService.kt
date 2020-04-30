@@ -1,9 +1,7 @@
 package vantutrieu97.myapplication.models
 
 import hu.akarnokd.rxjava3.retrofit.RxJava3CallAdapterFactory
-import io.reactivex.rxjava3.android.plugins.RxAndroidPlugins
 import io.reactivex.rxjava3.core.Single
-import io.reactivex.rxjava3.plugins.RxJavaPlugins
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
