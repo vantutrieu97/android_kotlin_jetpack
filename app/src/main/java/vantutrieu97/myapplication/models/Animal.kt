@@ -7,6 +7,8 @@ data class Animal(
     val breedId: String?,
     @SerializedName("name")
     val breed: String?,
+    @SerializedName("origin")
+    val origin: String?,
     @SerializedName("life_span")
     val lifeSpan: String?,
     @SerializedName("breed_group")
