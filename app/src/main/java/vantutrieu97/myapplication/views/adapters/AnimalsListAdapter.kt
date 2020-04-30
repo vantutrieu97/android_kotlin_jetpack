@@ -34,9 +34,19 @@ class AnimalsListAdapter(val animals: ArrayList<Animal>) :
     override fun onBindViewHolder(holder: AnimalsListAdapter.Holder, position: Int) {
         val animal = animals[position]
         holder.itemView.titleTxt.text = animal.breed
-        holder.itemView.textTxt.text = animal.lifeSpan
+        holder.itemView.lifeSpantTxt.text = animal.lifeSpan
         holder.itemView.groupTxt.text = animal.breedGroup
-        holder.itemView.originTxt.text = animal.origin
+        val temp = animal.origin
+        if (animal.origin == "" || animal.origin == null) {
+            holder.itemView.originTxt.visibility = View.GONE
+        } else {
+            holder.itemView.originTxt.text = animal.origin
+        }
+        if (animal.breedGroup == "" || animal.breedGroup == null) {
+            holder.itemView.groupTxt.visibility = View.GONE
+        } else {
+            holder.itemView.groupTxt.text = animal.breedGroup
+        }
         holder.itemView.temperamenTxt.text = animal.temperament
         holder.itemView.imageView.loadImage(
             animal.imageUrl,

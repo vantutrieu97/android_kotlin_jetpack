@@ -14,14 +14,14 @@
         android:layout_weight="2"
         android:contentDescription="@string/to_do"
         android:padding="4dp"
-        android:scaleType="fitEnd"
+        android:scaleType="centerCrop"
         app:srcCompat="@mipmap/ic_launcher" />
 
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="3"
-        android:gravity="center"
+        android:gravity="top"
         android:orientation="vertical">
 
         <TextView
@@ -36,7 +36,7 @@
             android:text="@string/text_view" />
 
         <TextView
-            android:id="@+id/textTxt"
+            android:id="@+id/lifeSpantTxt"
             style="@style/Text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
