@@ -36,7 +36,6 @@ class AnimalsListAdapter(val animals: ArrayList<Animal>) :
         holder.itemView.titleTxt.text = animal.breed
         holder.itemView.lifeSpantTxt.text = animal.lifeSpan
         holder.itemView.groupTxt.text = animal.breedGroup
-        val temp = animal.origin
         if (animal.origin == "" || animal.origin == null) {
             holder.itemView.originTxt.visibility = View.GONE
         } else {
