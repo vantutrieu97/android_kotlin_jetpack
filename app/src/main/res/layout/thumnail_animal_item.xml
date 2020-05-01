@@ -1,20 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
 
         <variable
             name="animal"
             type="vantutrieu97.myapplication.models.Animal" />
+
+        <variable
+            name="listener"
+            type="vantutrieu97.myapplication.views.AnimalItemClickListener" />
     </data>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="124dp"
+        android:onClick="@{listener::onAnimalItemClicked}"
         android:orientation="horizontal"
         android:paddingLeft="4dp"
         android:paddingRight="4dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{animal.breedId}"
+            android:visibility="gone" />
 
         <ImageView
             android:id="@+id/imageView"
@@ -22,9 +32,9 @@
             android:layout_height="match_parent"
             android:layout_weight="2"
             android:contentDescription="@string/to_do"
+            android:imageUrl="@{animal.imageUrl}"
             android:padding="4dp"
-            android:scaleType="centerCrop"
-            app:srcCompat="@mipmap/ic_launcher" />
+            android:scaleType="centerCrop" />
 
         <LinearLayout
             android:layout_width="0dp"

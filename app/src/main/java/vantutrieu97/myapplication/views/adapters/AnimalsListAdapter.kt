@@ -1,15 +1,19 @@
 package vantutrieu97.myapplication.views.adapters
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import vantutrieu97.myapplication.R
 import vantutrieu97.myapplication.databinding.ThumnailAnimalItemBinding
 import vantutrieu97.myapplication.models.Animal
+import vantutrieu97.myapplication.views.AnimalItemClickListener
+import vantutrieu97.myapplication.views.ListFragmentDirections
 
 class AnimalsListAdapter(val animals: ArrayList<Animal>) :
-    RecyclerView.Adapter<AnimalsListAdapter.Holder>() {
+    RecyclerView.Adapter<AnimalsListAdapter.Holder>(), AnimalItemClickListener {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AnimalsListAdapter.Holder {
         val inflater =
             LayoutInflater.from(parent.context)
@@ -33,36 +37,15 @@ class AnimalsListAdapter(val animals: ArrayList<Animal>) :
     }
 
     override fun onBindViewHolder(holder: AnimalsListAdapter.Holder, position: Int) {
-//        val animal = animals[position]
-////        holder.
-//        holder.itemView.titleTxt.text = animal.breed
-//        holder.itemView.lifeSpantTxt.text = animal.lifeSpan
-//        holder.itemView.groupTxt.text = animal.breedGroup
-//        val temp = animal.origin
-//        print("animal.origin ==:$temp")
-//        if (animal.origin == "" || animal.origin == null) {
-//            print(" Đủ điều kiện")
-//            holder.itemView.originTxt.visibility = View.GONE
-//        } else {
-//            holder.itemView.originTxt.text = animal.origin
-//        }
-//        if (animal.breedGroup == "" || animal.breedGroup == null) {
-//            holder.itemView.groupTxt.visibility = View.GONE
-//        } else {
-//            holder.itemView.groupTxt.text = animal.breedGroup
-//        }
-//        println("")
-//        holder.itemView.temperamenTxt.text = animal.temperament
-//        holder.itemView.imageView.loadImage(
-//            animal.imageUrl,
-//            getProgressDrawable(holder.itemView.imageView.context)
-//        )
-//
-//        holder.itemView.setOnClickListener {
-//            Navigation.findNavController(it)
-//                .navigate(ListFragmentDirections.actionDetailFragment(20))
-//        }
         holder.view.animal = animals[position]
+        holder.view.listener = this
+    }
+
+    override fun onAnimalItemClicked(view: View) {
+        super.onAnimalItemClicked(view)
+        Navigation.findNavController(view)
+            .navigate(ListFragmentDirections.actionDetailFragment(20))
+
     }
 
     inner class Holder(var view: ThumnailAnimalItemBinding) : RecyclerView.ViewHolder(view.root)
