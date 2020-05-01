@@ -1,16 +1,18 @@
 package vantutrieu97.myapplication.viewmodel
 
+import android.app.Application
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.observers.DisposableSingleObserver
 import io.reactivex.rxjava3.schedulers.Schedulers
+import kotlinx.coroutines.launch
 import vantutrieu97.myapplication.models.Animal
+import vantutrieu97.myapplication.models.AnimalDatabase
 import vantutrieu97.myapplication.models.AnimalService
 
-class AnimalsListViewModel : ViewModel() {
+class AnimalsListViewModel(application: Application) : BaseViewModel(application) {
     private val animalService = AnimalService()
     private val disposable = CompositeDisposable()
 
@@ -33,9 +35,9 @@ class AnimalsListViewModel : ViewModel() {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(object : DisposableSingleObserver<ArrayList<Animal>>() {
                     override fun onSuccess(t: ArrayList<Animal>?) {
-                        animals.value = t
-                        loading.value = false
-                        animalLoadError.value = false
+                        if (t != null) {
+                            storeAnimalsLocally(t)
+                        }
                     }
 
                     override fun onError(e: Throwable?) {
@@ -46,6 +48,28 @@ class AnimalsListViewModel : ViewModel() {
                 })
 
         )
+    }
+
+    private fun animalsRetrieved(animalsList: ArrayList<Animal>) {
+        animals.value = animalsList
+        loading.value = false
+        animalLoadError.value = false
+    }
+
+    private fun storeAnimalsLocally(newAnimalsList: ArrayList<Animal>) {
+        launch {
+            Log.i("BaseViewModel", "launch")
+            val dao = AnimalDatabase(getApplication()).animalDao()
+//            dao.deleteAnimals()
+            val result = dao.insertAll(*newAnimalsList.toTypedArray())
+
+            var i = 0
+            while (i < newAnimalsList.size) {
+                newAnimalsList[i].uuid = result[i].toInt()
+                ++i
+            }
+            animalsRetrieved(newAnimalsList)
+        }
     }
 
     override fun onCleared() {
