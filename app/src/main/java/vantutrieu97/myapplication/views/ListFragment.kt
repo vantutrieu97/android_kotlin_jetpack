@@ -34,7 +34,7 @@ class ListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         animalsListAdapter = AnimalsListAdapter(arrayListOf())
         viewModel = ViewModelProviders.of(this).get(AnimalsListViewModel::class.java)
-        viewModel.refresh()
+        viewModel.fetchFromRemote()
 
         animalsRcV.apply {
             layoutManager = LinearLayoutManager(context)
@@ -51,15 +51,14 @@ class ListFragment : Fragment() {
         observeViewModel()
     }
 
-    private fun observeViewModel() {
 
+    private fun observeViewModel() {
         Log.i(TAG, "observeViewModel")
         viewModel.animals.observe(viewLifecycleOwner, Observer { animalsListResult ->
             animalsListResult?.let {
 
                 Log.i(TAG, "animalsListResult != null")
                 animalsRcV.visibility = View.VISIBLE
-//                loadingView.visibility = View.GONE
                 animalsListAdapter.updateAnimalsList(animalsListResult)
             }
         })

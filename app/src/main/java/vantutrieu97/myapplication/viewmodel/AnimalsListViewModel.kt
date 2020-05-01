@@ -1,7 +1,7 @@
 package vantutrieu97.myapplication.viewmodel
 
 import android.app.Application
-import android.util.Log
+import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.disposables.CompositeDisposable
@@ -22,12 +22,20 @@ class AnimalsListViewModel(application: Application) : BaseViewModel(application
     val TAG = "ViewModel_Flow"
 
     fun refresh() {
-        Log.i(TAG, "refresh() start")
-        fetchFromRemote()
-        Log.i(TAG, "refresh() done")
+        fetchFromDatabase()
     }
 
-    private fun fetchFromRemote() {
+    private fun fetchFromDatabase() {
+        loading.value = true
+        launch {
+            val animalslistFromDatabase =
+                AnimalDatabase(getApplication()).animalDao().getAllAnimals()
+            animalsRetrieved(animalslistFromDatabase as ArrayList<Animal>)
+        }
+
+    }
+
+    fun fetchFromRemote() {
         loading.value = true
         disposable.add(
             animalService.getAnimals()
@@ -58,9 +66,8 @@ class AnimalsListViewModel(application: Application) : BaseViewModel(application
 
     private fun storeAnimalsLocally(newAnimalsList: ArrayList<Animal>) {
         launch {
-            Log.i("BaseViewModel", "launch")
             val dao = AnimalDatabase(getApplication()).animalDao()
-//            dao.deleteAnimals()
+            dao.deleteAnimals()
             val result = dao.insertAll(*newAnimalsList.toTypedArray())
 
             var i = 0
@@ -68,6 +75,7 @@ class AnimalsListViewModel(application: Application) : BaseViewModel(application
                 newAnimalsList[i].uuid = result[i].toInt()
                 ++i
             }
+            Toast.makeText(getApplication(), "Saved data to local", Toast.LENGTH_SHORT).show()
             animalsRetrieved(newAnimalsList)
         }
     }
