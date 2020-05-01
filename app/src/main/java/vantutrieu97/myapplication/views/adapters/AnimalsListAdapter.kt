@@ -1,23 +1,24 @@
 package vantutrieu97.myapplication.views.adapters
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.Navigation
+import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.thumnail_animal_item.view.*
 import vantutrieu97.myapplication.R
+import vantutrieu97.myapplication.databinding.ThumnailAnimalItemBinding
 import vantutrieu97.myapplication.models.Animal
-import vantutrieu97.myapplication.utils.getProgressDrawable
-import vantutrieu97.myapplication.utils.loadImage
-import vantutrieu97.myapplication.views.ListFragmentDirections
 
 class AnimalsListAdapter(val animals: ArrayList<Animal>) :
     RecyclerView.Adapter<AnimalsListAdapter.Holder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AnimalsListAdapter.Holder {
-        val view =
+        val inflater =
             LayoutInflater.from(parent.context)
-                .inflate(R.layout.thumnail_animal_item, parent, false)
+        val view = DataBindingUtil.inflate<ThumnailAnimalItemBinding>(
+            inflater,
+            R.layout.thumnail_animal_item,
+            parent,
+            false
+        )
         return Holder(view)
     }
 
@@ -32,31 +33,37 @@ class AnimalsListAdapter(val animals: ArrayList<Animal>) :
     }
 
     override fun onBindViewHolder(holder: AnimalsListAdapter.Holder, position: Int) {
-        val animal = animals[position]
-        holder.itemView.titleTxt.text = animal.breed
-        holder.itemView.lifeSpantTxt.text = animal.lifeSpan
-        holder.itemView.groupTxt.text = animal.breedGroup
-        if (animal.origin == "" || animal.origin == null) {
-            holder.itemView.originTxt.visibility = View.GONE
-        } else {
-            holder.itemView.originTxt.text = animal.origin
-        }
-        if (animal.breedGroup == "" || animal.breedGroup == null) {
-            holder.itemView.groupTxt.visibility = View.GONE
-        } else {
-            holder.itemView.groupTxt.text = animal.breedGroup
-        }
-        holder.itemView.temperamenTxt.text = animal.temperament
-        holder.itemView.imageView.loadImage(
-            animal.imageUrl,
-            getProgressDrawable(holder.itemView.imageView.context)
-        )
-
-        holder.itemView.setOnClickListener {
-            Navigation.findNavController(it)
-                .navigate(ListFragmentDirections.actionDetailFragment(20))
-        }
+//        val animal = animals[position]
+////        holder.
+//        holder.itemView.titleTxt.text = animal.breed
+//        holder.itemView.lifeSpantTxt.text = animal.lifeSpan
+//        holder.itemView.groupTxt.text = animal.breedGroup
+//        val temp = animal.origin
+//        print("animal.origin ==:$temp")
+//        if (animal.origin == "" || animal.origin == null) {
+//            print(" Đủ điều kiện")
+//            holder.itemView.originTxt.visibility = View.GONE
+//        } else {
+//            holder.itemView.originTxt.text = animal.origin
+//        }
+//        if (animal.breedGroup == "" || animal.breedGroup == null) {
+//            holder.itemView.groupTxt.visibility = View.GONE
+//        } else {
+//            holder.itemView.groupTxt.text = animal.breedGroup
+//        }
+//        println("")
+//        holder.itemView.temperamenTxt.text = animal.temperament
+//        holder.itemView.imageView.loadImage(
+//            animal.imageUrl,
+//            getProgressDrawable(holder.itemView.imageView.context)
+//        )
+//
+//        holder.itemView.setOnClickListener {
+//            Navigation.findNavController(it)
+//                .navigate(ListFragmentDirections.actionDetailFragment(20))
+//        }
+        holder.view.animal = animals[position]
     }
 
-    inner class Holder(itemView: View) : RecyclerView.ViewHolder(itemView)
+    inner class Holder(var view: ThumnailAnimalItemBinding) : RecyclerView.ViewHolder(view.root)
 }
