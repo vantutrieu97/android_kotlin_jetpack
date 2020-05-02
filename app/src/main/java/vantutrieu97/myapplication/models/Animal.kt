@@ -38,3 +38,5 @@ data class Animal(
     @PrimaryKey(autoGenerate = true)
     var uuid: Int = 0
 }
+
+data class AnimalPlatte(var color: Int)

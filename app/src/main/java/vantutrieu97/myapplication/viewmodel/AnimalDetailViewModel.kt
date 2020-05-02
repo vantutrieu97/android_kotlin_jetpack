@@ -1,23 +1,19 @@
 package vantutrieu97.myapplication.viewmodel
 
+import android.app.Application
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import kotlinx.coroutines.launch
 import vantutrieu97.myapplication.models.Animal
+import vantutrieu97.myapplication.models.AnimalDatabase
 
-class AnimalDetailViewModel : ViewModel() {
+class AnimalDetailViewModel(application: Application) : BaseViewModel(application) {
     val animal = MutableLiveData<Animal>()
 
-    fun fetch() {
-        val animalTemporal = Animal(
-            "0-temporal",
-            "Breed-temporal",
-            "10 years-temporal",
-            "Group 0-temporal",
-            "For 0-temporal",
-            "Temperanment 0-temporal",
-            "",
-            ""
-        )
-        animal.value = animalTemporal
+    fun fetch(uuid: String) {
+        launch {
+            val dao = AnimalDatabase(getApplication()).animalDao()
+            val animalMatched = dao.getAnimalByID(uuid.toInt())
+            animal.value = animalMatched
+        }
     }
 }

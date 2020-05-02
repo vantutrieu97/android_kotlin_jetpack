@@ -21,9 +21,10 @@
         android:paddingRight="4dp">
 
         <TextView
+            android:id="@+id/idTxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{animal.breedId}"
+            android:text="@{String.valueOf(animal.uuid)}"
             android:visibility="gone" />
 
         <ImageView

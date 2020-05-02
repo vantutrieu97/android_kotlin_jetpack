@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
+import kotlinx.android.synthetic.main.thumnail_animal_item.view.*
 import vantutrieu97.myapplication.R
 import vantutrieu97.myapplication.databinding.ThumnailAnimalItemBinding
 import vantutrieu97.myapplication.models.Animal
@@ -44,8 +45,11 @@ class AnimalsListAdapter(val animals: ArrayList<Animal>) :
     override fun onAnimalItemClicked(view: View) {
         super.onAnimalItemClicked(view)
         Navigation.findNavController(view)
-            .navigate(ListFragmentDirections.actionDetailFragment(20))
-
+            .navigate(
+                ListFragmentDirections.actionDetailFragment(
+                    view.idTxt.text.toString().toInt()
+                )
+            )
     }
 
     inner class Holder(var view: ThumnailAnimalItemBinding) : RecyclerView.ViewHolder(view.root)
