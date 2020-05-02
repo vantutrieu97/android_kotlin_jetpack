@@ -16,6 +16,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Log.i(TAG, "onCreate:${Calendar.getInstance().getTime()}")
+        setTheme(R.style.AppTheme)
         setContentView(R.layout.activity_main)
 
     }
