@@ -29,6 +29,7 @@ class NotificationHelper(val context: Context) {
 
         val notification =
             NotificationCompat.Builder(context, CHANNEL_ID)
+                .setAutoCancel(true)
                 .setSmallIcon(smallIcon)
                 .setLargeIcon(largeIcon)
                 .setContentTitle("This is content title")
