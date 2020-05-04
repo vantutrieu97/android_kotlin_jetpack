@@ -19,6 +19,7 @@ import vantutrieu97.myapplication.views.adapters.AnimalsListAdapter
  */
 class ListFragment : Fragment() {
     private val TAG = "ViewModel_Flow"
+    private val TAG2 = "LIFE_CYCLE"
     private lateinit var viewModel: AnimalsListViewModel
     private lateinit var animalsListAdapter: AnimalsListAdapter
     override fun onCreateView(
@@ -26,15 +27,16 @@ class ListFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         Log.i(TAG, "onCreateView")
+        Log.i(TAG2, "onCreateView")
         return inflater.inflate(R.layout.fragment_list, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         Log.i(TAG, "onViewCreated")
+        Log.i(TAG2, "onViewCreated")
         super.onViewCreated(view, savedInstanceState)
         animalsListAdapter = AnimalsListAdapter(arrayListOf())
         viewModel = ViewModelProviders.of(this).get(AnimalsListViewModel::class.java)
-        viewModel.fetchFromRemote()
 
         animalsRcV.apply {
             layoutManager = LinearLayoutManager(context)
@@ -51,6 +53,12 @@ class ListFragment : Fragment() {
         observeViewModel()
     }
 
+    override fun onResume() {
+        super.onResume()
+        Log.i(TAG2, "onResume")
+        viewModel.fetchFromRemote()
+
+    }
 
     private fun observeViewModel() {
         Log.i(TAG, "observeViewModel")
