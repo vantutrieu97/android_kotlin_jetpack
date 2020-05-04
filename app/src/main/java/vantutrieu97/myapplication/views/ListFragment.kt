@@ -2,12 +2,11 @@ package vantutrieu97.myapplication.views
 
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_list.*
 import vantutrieu97.myapplication.R
@@ -28,6 +27,7 @@ class ListFragment : Fragment() {
     ): View? {
         Log.i(TAG, "onCreateView")
         Log.i(TAG2, "onCreateView")
+        setHasOptionsMenu(true)
         return inflater.inflate(R.layout.fragment_list, container, false)
     }
 
@@ -87,5 +87,22 @@ class ListFragment : Fragment() {
                 loadingView.visibility = if (it) View.VISIBLE else View.GONE
             }
         })
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.list_menu, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.actionSetting -> {
+                view?.let {
+                    Navigation.findNavController(it)
+                        .navigate(ListFragmentDirections.actionSetting())
+                }
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 }
