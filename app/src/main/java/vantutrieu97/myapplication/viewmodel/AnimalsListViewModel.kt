@@ -11,6 +11,7 @@ import kotlinx.coroutines.launch
 import vantutrieu97.myapplication.models.Animal
 import vantutrieu97.myapplication.models.AnimalDatabase
 import vantutrieu97.myapplication.models.AnimalService
+import vantutrieu97.myapplication.utils.NotificationHelper
 
 class AnimalsListViewModel(application: Application) : BaseViewModel(application) {
     private val animalService = AnimalService()
@@ -45,6 +46,7 @@ class AnimalsListViewModel(application: Application) : BaseViewModel(application
                     override fun onSuccess(t: ArrayList<Animal>?) {
                         if (t != null) {
                             storeAnimalsLocally(t)
+                            NotificationHelper(getApplication()).createNotification()
                         }
                     }
 

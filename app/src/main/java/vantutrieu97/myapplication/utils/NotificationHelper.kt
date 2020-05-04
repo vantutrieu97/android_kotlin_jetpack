@@ -19,21 +19,24 @@ class NotificationHelper(val context: Context) {
     fun createNotification() {
         this.createNoficationChannel()
         val intent = Intent(context, MainActivity::class.java).apply {
+//            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         }
-        val pendingIntent = PendingIntent.getActivity(context, 0, intent, 0)
-        val smallIcon = R.drawable.ic_logo
-        val largeIcon = BitmapFactory.decodeResource(context.resources, R.drawable.ic_logo)
+        val pendingIntent =
+            PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_CANCEL_CURRENT)
+        val smallIcon = R.drawable.ic_logo_png
+        val largeIcon = BitmapFactory.decodeResource(context.resources, R.drawable.ic_logo_png)
 
         val notification =
             NotificationCompat.Builder(context, CHANNEL_ID)
                 .setSmallIcon(smallIcon)
-                .setLargeIcon(largeIcon).setContentText("This is content title")
+                .setLargeIcon(largeIcon)
+                .setContentTitle("This is content title")
                 .setContentText("This is content text")
                 .setStyle(
                     NotificationCompat.BigPictureStyle()
                         .bigPicture(largeIcon)
-                        .bigLargeIcon(null)
+                        .bigLargeIcon(largeIcon)
                 ).setContentIntent(pendingIntent)
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT)
                 .build()
