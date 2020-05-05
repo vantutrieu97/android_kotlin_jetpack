@@ -22,6 +22,10 @@ class AnimalsListViewModel(application: Application) : BaseViewModel(application
     val loading = MutableLiveData<Boolean>()
     val TAG = "ViewModel_Flow"
 
+    init {
+        fetchFromRemote()
+    }
+
     fun refresh() {
         fetchFromDatabase()
     }

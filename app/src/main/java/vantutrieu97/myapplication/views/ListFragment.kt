@@ -37,7 +37,6 @@ class ListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         animalsListAdapter = AnimalsListAdapter(arrayListOf())
         viewModel = ViewModelProviders.of(this).get(AnimalsListViewModel::class.java)
-
         animalsRcV.apply {
             layoutManager = LinearLayoutManager(context)
             adapter = animalsListAdapter
@@ -51,13 +50,6 @@ class ListFragment : Fragment() {
             refreshLayout.isRefreshing = false
         }
         observeViewModel()
-    }
-
-    override fun onResume() {
-        super.onResume()
-        Log.i(TAG2, "onResume")
-        viewModel.fetchFromRemote()
-
     }
 
     private fun observeViewModel() {
