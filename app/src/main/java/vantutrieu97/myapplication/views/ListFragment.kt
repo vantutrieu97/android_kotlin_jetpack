@@ -94,6 +94,12 @@ class ListFragment : Fragment() {
                         .navigate(ListFragmentDirections.actionSetting())
                 }
             }
+            R.id.actionDashboard -> {
+                view?.let {
+                    Navigation.findNavController(it)
+                        .navigate(ListFragmentDirections.actionDashboard())
+                }
+            }
         }
         return super.onOptionsItemSelected(item)
     }

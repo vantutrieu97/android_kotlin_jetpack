@@ -101,7 +101,7 @@
     <View
         android:id="@+id/dividerView"
         android:layout_width="match_parent"
-        android:layout_height="1"
+        android:layout_height="20dp"
         android:background="@color/purple_900"
         app:layout_constraintTop_toTopOf="@id/bottomNavigationView" />
 </androidx.constraintlayout.widget.ConstraintLayout>

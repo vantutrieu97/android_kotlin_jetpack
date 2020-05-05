@@ -15,6 +15,9 @@
         <action
             android:id="@+id/actionSetting"
             app:destination="@id/settingFragment" />
+        <action
+            android:id="@+id/actionDashboard"
+            app:destination="@id/dashboardFragment" />
     </fragment>
     <fragment
         android:id="@+id/detailFragment"
@@ -35,4 +38,9 @@
         android:name="vantutrieu97.myapplication.views.SettingFragment"
         android:label="fragment_setting"
         tools:layout="@layout/fragment_setting" />
+    <fragment
+        android:id="@+id/dashboardFragment"
+        android:name="vantutrieu97.myapplication.views.DashboardFragment"
+        android:label="fragment_dashboard"
+        tools:layout="@layout/fragment_dashboard" />
 </navigation>
