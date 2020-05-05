@@ -36,6 +36,11 @@ class AnimalsListViewModel(application: Application) : BaseViewModel(application
             val animalslistFromDatabase =
                 AnimalDatabase(getApplication()).animalDao().getAllAnimals()
             animalsRetrieved(animalslistFromDatabase as ArrayList<Animal>)
+            Toast.makeText(
+                getApplication(),
+                "Refreshed data from local database",
+                Toast.LENGTH_SHORT
+            ).show()
         }
 
     }
