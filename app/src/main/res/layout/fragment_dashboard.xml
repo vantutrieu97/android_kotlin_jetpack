@@ -85,23 +85,7 @@
         android:id="@+id/contentScV"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/dividerView"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/dashboardHeaderLayout" />
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottomNavigationView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/white"
-        app:itemIconSize="30dp"
-        app:labelVisibilityMode="unlabeled"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:menu="@menu/navigation_menu" />
-
-    <View
-        android:id="@+id/dividerView"
-        android:layout_width="match_parent"
-        android:layout_height="20dp"
-        android:background="@color/purple_900"
-        app:layout_constraintTop_toTopOf="@id/bottomNavigationView" />
 </androidx.constraintlayout.widget.ConstraintLayout>
