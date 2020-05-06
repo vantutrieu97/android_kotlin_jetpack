@@ -4,9 +4,10 @@ import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
-import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
-import kotlinx.android.synthetic.main.activity_main.*
+import androidx.navigation.ui.setupWithNavController
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import vantutrieu97.myapplication.R
 import java.util.*
 
@@ -25,13 +26,10 @@ class MainActivity : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
         Log.i(TAG, "onStart:${Calendar.getInstance().getTime()}")
-//        navController = Navigation.findNavController(this, R.id.fragmentContainerViewTag)
-//        NavigationUI.setupActionBarWithNavController(this, navController)
-        var navHostFragment =
-            supportFragmentManager.findFragmentById(R.id.fragmentContainerViewTag) as NavHostFragment
-        navController = navHostFragment.navController
-        NavigationUI.setupWithNavController(bottomNavigationView, navHostFragment.navController)
-        NavigationUI.setupActionBarWithNavController(this, navController)
+        navController = findNavController(R.id.nav_host_fragment)
+        findViewById<BottomNavigationView>(R.id.bottom_navigation_view).setupWithNavController(
+            navController
+        )
     }
 
     override fun onSupportNavigateUp(): Boolean {
