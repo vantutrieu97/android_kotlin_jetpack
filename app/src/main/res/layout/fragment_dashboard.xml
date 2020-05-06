@@ -11,8 +11,10 @@
         android:id="@+id/dashboardHeaderLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/header_dashboard_background"
+        android:background="@drawable/header_conner_background"
         android:padding="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView

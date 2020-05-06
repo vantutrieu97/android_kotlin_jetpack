@@ -7,4 +7,6 @@
     <string name="detail_fragment">Animal detail fragment</string>
     <string name="text_view">TextView</string>
     <string name="to_do">TODO</string>
+    <string name="hello">hello</string>
+    <string name="vantutrieu97">vantutrieu97</string>
 </resources>
