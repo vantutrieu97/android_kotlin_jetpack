@@ -3,19 +3,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:ignore="MissingDefaultResource">
     <item
-        android:id="@+id/menuHome"
+        android:id="@+id/animalsListFragment"
         android:icon="@drawable/ic_home"
-        android:title="Home" />
+        android:title="Animals list" />
     <item
-        android:id="@+id/menuFavarite"
+        android:id="@+id/favoriteFragment"
         android:icon="@drawable/ic_favorite"
-        android:title="Home" />
+        android:title="Favorite" />
     <item
         android:id="@+id/menuAccount"
         android:icon="@drawable/ic_account_circle"
-        android:title="Home" />
+        android:title="Account" />
     <item
         android:id="@+id/menuSetting"
         android:icon="@drawable/ic_settings"
-        android:title="Home" />
+        android:title="Setting" />
 </menu>

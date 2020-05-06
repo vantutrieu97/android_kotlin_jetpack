@@ -3,11 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation"
-    app:startDestination="@id/listFragment">
+    app:startDestination="@id/animalsListFragment">
 
     <fragment
-        android:id="@+id/listFragment"
-        android:name="vantutrieu97.myapplication.views.ListFragment"
+        android:id="@+id/animalsListFragment"
+        android:name="vantutrieu97.myapplication.views.tabs.AnimalsListFragment"
         android:label="Animals list">
         <action
             android:id="@+id/actionDetailFragment"
@@ -18,6 +18,9 @@
         <action
             android:id="@+id/actionDashboard"
             app:destination="@id/dashboardFragment" />
+        <action
+            android:id="@+id/actionFavorite"
+            app:destination="@id/favoriteFragment" />
     </fragment>
     <fragment
         android:id="@+id/detailFragment"
@@ -25,7 +28,7 @@
         android:label="Animal detail">
         <action
             android:id="@+id/actionListFragment"
-            app:destination="@id/listFragment"
+            app:destination="@id/animalsListFragment"
             app:enterAnim="@android:anim/fade_in"
             app:exitAnim="@android:anim/fade_out" />
         <argument
@@ -43,4 +46,9 @@
         android:name="vantutrieu97.myapplication.views.DashboardFragment"
         android:label="fragment_dashboard"
         tools:layout="@layout/fragment_dashboard" />
+    <fragment
+        android:id="@+id/favoriteFragment"
+        android:name="vantutrieu97.myapplication.views.tabs.FavoriteFragment"
+        android:label="favorite_fragment"
+        tools:layout="@layout/favorite_fragment" />
 </navigation>
