@@ -1,9 +1,10 @@
-package vantutrieu97.myapplication.views
+package vantutrieu97.myapplication.views.tabs
 
 import android.os.Bundle
 import android.util.Log
 import android.view.*
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.Navigation
@@ -11,16 +12,27 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_list.*
 import vantutrieu97.myapplication.R
 import vantutrieu97.myapplication.viewmodel.AnimalsListViewModel
+import vantutrieu97.myapplication.views.DashboardFragment
+import vantutrieu97.myapplication.views.SettingFragment
 import vantutrieu97.myapplication.views.adapters.AnimalsListAdapter
+
 
 /**
  * A simple [Fragment] subclass.
  */
-class ListFragment : Fragment() {
+class AnimalsListFragment : Fragment() {
     private val TAG = "ViewModel_Flow"
     private val TAG2 = "LIFE_CYCLE"
     private lateinit var viewModel: AnimalsListViewModel
     private lateinit var animalsListAdapter: AnimalsListAdapter
+
+
+//    val animalsListFragment: Fragment = AnimalsListFragment()
+//    val fravoriteFragment: Fragment = FavoriteFragment()
+//    val fragment2: Fragment = DashboardFragment()
+//    val fragment3: Fragment = SettingFragment()
+//    val fm: FragmentManager = getSupportFragmentManager()
+//    var active = animalsListFragment
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -91,16 +103,18 @@ class ListFragment : Fragment() {
             R.id.actionSetting -> {
                 view?.let {
                     Navigation.findNavController(it)
-                        .navigate(ListFragmentDirections.actionSetting())
+                        .navigate(AnimalsListFragmentDirections.actionSetting())
                 }
             }
             R.id.actionDashboard -> {
                 view?.let {
                     Navigation.findNavController(it)
-                        .navigate(ListFragmentDirections.actionDashboard())
+                        .navigate(AnimalsListFragmentDirections.actionDashboard())
                 }
             }
         }
         return super.onOptionsItemSelected(item)
     }
+
+    
 }
