@@ -11,7 +11,7 @@ import vantutrieu97.myapplication.R
 import vantutrieu97.myapplication.databinding.ThumnailAnimalItemBinding
 import vantutrieu97.myapplication.models.Animal
 import vantutrieu97.myapplication.views.AnimalItemClickListener
-import vantutrieu97.myapplication.views.ListFragmentDirections
+import vantutrieu97.myapplication.views.tabs.AnimalsListFragmentDirections
 
 class AnimalsListAdapter(val animals: ArrayList<Animal>) :
     RecyclerView.Adapter<AnimalsListAdapter.Holder>(), AnimalItemClickListener {
@@ -46,7 +46,7 @@ class AnimalsListAdapter(val animals: ArrayList<Animal>) :
         super.onAnimalItemClicked(view)
         Navigation.findNavController(view)
             .navigate(
-                ListFragmentDirections.actionDetailFragment(
+                AnimalsListFragmentDirections.actionDetailFragment(
                     view.idTxt.text.toString().toInt()
                 )
             )
