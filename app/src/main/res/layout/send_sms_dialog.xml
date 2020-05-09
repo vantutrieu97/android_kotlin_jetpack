@@ -31,7 +31,7 @@
             android:autofillHints=""
             android:gravity="center_horizontal"
             android:inputType="textImeMultiLine"
-            android:text="adasdasdasd"
+            android:text="@{animalSms.text}"
             tools:ignore="LabelFor" />
 
         <ImageView
