@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent">
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -32,13 +31,17 @@
             android:autofillHints=""
             android:gravity="center_horizontal"
             android:inputType="textImeMultiLine"
-            android:text="@{animalSms.text}"
+            android:text="adasdasdasd"
             tools:ignore="LabelFor" />
 
         <ImageView
+            android:id="@+id/imageView3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
             android:contentDescription="@string/todo"
-            android:src="@{animalSms.imageUrl}" />
+            android:imageUrl="@{animalSms.imageUrl}"
+            android:scaleType="centerInside" />
+
     </LinearLayout>
 </layout>

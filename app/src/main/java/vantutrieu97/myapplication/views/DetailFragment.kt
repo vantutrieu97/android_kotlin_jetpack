@@ -7,6 +7,7 @@ import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.view.*
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
@@ -19,7 +20,10 @@ import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
 import vantutrieu97.myapplication.R
 import vantutrieu97.myapplication.databinding.FragmentDetailBinding
+import vantutrieu97.myapplication.databinding.SendSmsDialogBinding
+import vantutrieu97.myapplication.models.Animal
 import vantutrieu97.myapplication.models.AnimalPlatte
+import vantutrieu97.myapplication.models.AnimalSms
 import vantutrieu97.myapplication.utils.PERMISSION_SEND_SMS
 import vantutrieu97.myapplication.viewmodel.AnimalDetailViewModel
 
@@ -32,6 +36,7 @@ class DetailFragment : Fragment() {
     private lateinit var uuid: String
     private lateinit var dataBinding: FragmentDetailBinding
     private var sendSmsStarted = false
+    private lateinit var currentAnimal: Animal
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -62,6 +67,7 @@ class DetailFragment : Fragment() {
     private fun observeViewModel() {
         viewModel.animal.observe(viewLifecycleOwner, Observer { result ->
             result?.let {
+                currentAnimal = result
                 dataBinding.animal = result
                 result.imageUrl?.let {
                     setBackgroundColor(it)
@@ -121,7 +127,27 @@ class DetailFragment : Fragment() {
 
 
         } else {
-            println("Permission is granted")
+            context?.let {
+                val animalSms =
+                    AnimalSms(
+                        "",
+                        "${currentAnimal.temperament}",
+                        "${currentAnimal.imageUrl}"
+                    )
+                val smsDialogBinding = DataBindingUtil.inflate<SendSmsDialogBinding>(
+                    LayoutInflater.from(it), R.layout.send_sms_dialog, null, false
+                )
+                AlertDialog.Builder(it)
+                    .setView(smsDialogBinding.root)
+                    .setPositiveButton("Send SMS") { dialog, which ->
+                        if (!smsDialogBinding.smsDestination.text.isNullOrEmpty()) {
+                            animalSms.to = smsDialogBinding.smsDestination.text.toString()
+                            sendSms(animalSms)
+                        }
+                    }.setNegativeButton("Cancel") { dialog, which -> }
+                    .show()
+                smsDialogBinding.animalSms = animalSms
+            }
         }
     }
 
@@ -137,7 +163,8 @@ class DetailFragment : Fragment() {
         when (requestCode) {
             PERMISSION_SEND_SMS -> {
                 if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    println("Xin quyen thanh cong")
+
+
                 } else {
                     println("Xin quyen that bai")
                 }
@@ -145,5 +172,9 @@ class DetailFragment : Fragment() {
 
         }
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+    }
+
+    private fun sendSms(animalSms: AnimalSms) {
+
     }
 }
