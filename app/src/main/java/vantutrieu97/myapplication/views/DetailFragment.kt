@@ -114,7 +114,19 @@ class DetailFragment : Fragment() {
                 true
             }
             R.id.action_share -> {
-                println("onOptionsItemSelected action_share")
+                val intent = Intent(Intent.ACTION_SEND)
+                intent.type = "text/plain"
+                intent.putExtra(Intent.EXTRA_SUBJECT, "This is subject ^^")
+                intent.putExtra(Intent.EXTRA_TITLE, "This is title ^^")
+                intent.putExtra(
+                    Intent.EXTRA_TEXT,
+                    "This is animal's image link: ${currentAnimal.imageUrl}"
+                ) xx
+                        intent.putExtra(
+                            Intent.EXTRA_STREAM,
+                            currentAnimal.imageUrl
+                        )
+                startActivity(Intent.createChooser(intent, "Share with"))
                 true
             }
         }
@@ -181,7 +193,13 @@ class DetailFragment : Fragment() {
         val intent = Intent(context, MainActivity::class.java)
         val pendingIntent = PendingIntent.getActivity(context, 0, intent, 0)
         val sms = SmsManager.getDefault()
-        sms.sendTextMessage(animalSms.to, null, animalSms.text, pendingIntent, null)
+        sms.sendTextMessage(
+            animalSms.to,
+            null,
+            "This is link to download this image:\n${animalSms.imageUrl}",
+            pendingIntent,
+            null
+        )
 
     }
 }
