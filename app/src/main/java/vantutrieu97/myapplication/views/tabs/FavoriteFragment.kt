@@ -1,12 +1,11 @@
 package vantutrieu97.myapplication.views.tabs
 
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProviders
 import vantutrieu97.myapplication.R
 import vantutrieu97.myapplication.viewmodel.FavoriteViewModel
 

@@ -1,10 +1,9 @@
 package vantutrieu97.myapplication.views.tabs
 
 import android.os.Bundle
-import android.util.Log
 import android.view.*
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.Navigation
@@ -12,8 +11,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_list.*
 import vantutrieu97.myapplication.R
 import vantutrieu97.myapplication.viewmodel.AnimalsListViewModel
-import vantutrieu97.myapplication.views.DashboardFragment
-import vantutrieu97.myapplication.views.SettingFragment
 import vantutrieu97.myapplication.views.adapters.AnimalsListAdapter
 
 
@@ -21,31 +18,19 @@ import vantutrieu97.myapplication.views.adapters.AnimalsListAdapter
  * A simple [Fragment] subclass.
  */
 class AnimalsListFragment : Fragment() {
-    private val TAG = "ViewModel_Flow"
-    private val TAG2 = "LIFE_CYCLE"
+
     private lateinit var viewModel: AnimalsListViewModel
     private lateinit var animalsListAdapter: AnimalsListAdapter
 
-
-//    val animalsListFragment: Fragment = AnimalsListFragment()
-//    val fravoriteFragment: Fragment = FavoriteFragment()
-//    val fragment2: Fragment = DashboardFragment()
-//    val fragment3: Fragment = SettingFragment()
-//    val fm: FragmentManager = getSupportFragmentManager()
-//    var active = animalsListFragment
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        Log.i(TAG, "onCreateView")
-        Log.i(TAG2, "onCreateView")
-        setHasOptionsMenu(true)
+        (activity as AppCompatActivity)?.supportActionBar?.hide()
         return inflater.inflate(R.layout.fragment_list, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        Log.i(TAG, "onViewCreated")
-        Log.i(TAG2, "onViewCreated")
         super.onViewCreated(view, savedInstanceState)
         animalsListAdapter = AnimalsListAdapter(arrayListOf())
         viewModel = ViewModelProviders.of(this).get(AnimalsListViewModel::class.java)
@@ -65,11 +50,8 @@ class AnimalsListFragment : Fragment() {
     }
 
     private fun observeViewModel() {
-        Log.i(TAG, "observeViewModel")
         viewModel.animals.observe(viewLifecycleOwner, Observer { animalsListResult ->
             animalsListResult?.let {
-
-                Log.i(TAG, "animalsListResult != null")
                 animalsRcV.visibility = View.VISIBLE
                 animalsListAdapter.updateAnimalsList(animalsListResult)
             }
@@ -77,8 +59,6 @@ class AnimalsListFragment : Fragment() {
 
         viewModel.animalLoadError.observe(viewLifecycleOwner, Observer { isError ->
             isError?.let {
-
-                Log.i(TAG, "isError != null ---> $isError")
                 errorsTxt.visibility = if (it) View.VISIBLE else View.GONE
             }
 
@@ -86,8 +66,6 @@ class AnimalsListFragment : Fragment() {
 
         viewModel.loading.observe(viewLifecycleOwner, Observer { isLoading ->
             isLoading?.let {
-
-                Log.i(TAG, "isLoading != null --> $isLoading")
                 loadingView.visibility = if (it) View.VISIBLE else View.GONE
             }
         })
@@ -116,5 +94,5 @@ class AnimalsListFragment : Fragment() {
         return super.onOptionsItemSelected(item)
     }
 
-    
+
 }
