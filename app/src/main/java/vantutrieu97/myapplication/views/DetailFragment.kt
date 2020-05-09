@@ -1,11 +1,14 @@
 package vantutrieu97.myapplication.views
 
 import android.Manifest
+import android.app.PendingIntent
 import android.content.Context
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
 import android.os.Bundle
+import android.telephony.SmsManager
 import android.view.*
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -175,6 +178,10 @@ class DetailFragment : Fragment() {
     }
 
     private fun sendSms(animalSms: AnimalSms) {
+        val intent = Intent(context, MainActivity::class.java)
+        val pendingIntent = PendingIntent.getActivity(context, 0, intent, 0)
+        val sms = SmsManager.getDefault()
+        sms.sendTextMessage(animalSms.to, null, animalSms.text, pendingIntent, null)
 
     }
 }
