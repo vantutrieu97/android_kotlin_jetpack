@@ -1,11 +1,14 @@
 package vantutrieu97.myapplication.views
 
+import android.Manifest
 import android.content.Context
+import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.view.*
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -17,6 +20,7 @@ import com.bumptech.glide.request.transition.Transition
 import vantutrieu97.myapplication.R
 import vantutrieu97.myapplication.databinding.FragmentDetailBinding
 import vantutrieu97.myapplication.models.AnimalPlatte
+import vantutrieu97.myapplication.utils.PERMISSION_SEND_SMS
 import vantutrieu97.myapplication.viewmodel.AnimalDetailViewModel
 
 
@@ -27,6 +31,8 @@ class DetailFragment : Fragment() {
     private lateinit var viewModel: AnimalDetailViewModel
     private lateinit var uuid: String
     private lateinit var dataBinding: FragmentDetailBinding
+    private var sendSmsStarted = false
+
     override fun onAttach(context: Context) {
         super.onAttach(context)
         (activity as AppCompatActivity)?.supportActionBar?.show()
@@ -94,6 +100,8 @@ class DetailFragment : Fragment() {
         when (item.itemId) {
             R.id.action_send_sms -> {
                 println("onOptionsItemSelected action_send_sms")
+                sendSmsStarted = true
+                context?.let { checkSmsPermission(it) }
                 true
             }
             R.id.action_share -> {
@@ -104,4 +112,38 @@ class DetailFragment : Fragment() {
         return super.onOptionsItemSelected(item)
     }
 
+    private fun checkSmsPermission(context: Context) {
+        if (ContextCompat.checkSelfPermission(context, Manifest.permission.SEND_SMS)
+            != PackageManager.PERMISSION_GRANTED
+        ) {
+            // Permission is not granted
+            requestSmsPermission()
+
+
+        } else {
+            println("Permission is granted")
+        }
+    }
+
+    private fun requestSmsPermission() {
+        requestPermissions(arrayOf(Manifest.permission.SEND_SMS), PERMISSION_SEND_SMS)
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        when (requestCode) {
+            PERMISSION_SEND_SMS -> {
+                if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    println("Xin quyen thanh cong")
+                } else {
+                    println("Xin quyen that bai")
+                }
+            }
+
+        }
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+    }
 }
