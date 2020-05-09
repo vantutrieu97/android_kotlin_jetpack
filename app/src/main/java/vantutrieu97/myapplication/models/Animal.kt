@@ -40,3 +40,5 @@ data class Animal(
 }
 
 data class AnimalPlatte(var color: Int)
+
+data class AnimalSms(val to: String, val text: String, val imageUrl: String)
