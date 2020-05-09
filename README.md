@@ -1,0 +1,3 @@
+# android_kotlin_jetpack
+Kotlin, Room, Navigation, Data Binding, MVVM, Notifications, Permissions and a lot more...
+#vantutrieu97
