@@ -121,11 +121,11 @@ class DetailFragment : Fragment() {
                 intent.putExtra(
                     Intent.EXTRA_TEXT,
                     "This is animal's image link: ${currentAnimal.imageUrl}"
-                ) xx
-                        intent.putExtra(
-                            Intent.EXTRA_STREAM,
-                            currentAnimal.imageUrl
-                        )
+                )
+                intent.putExtra(
+                    Intent.EXTRA_STREAM,
+                    currentAnimal.imageUrl
+                )
                 startActivity(Intent.createChooser(intent, "Share with"))
                 true
             }
